@@ -3,7 +3,7 @@
 A full-stack Clojure demonstration, including backend, frontend, and an
 API to connect the two.
 
-** TODO Features [0/2]
+** TODO Features [0/3]
 - [-] Frontend
   - [X] ClojureScript setup and served from backend
   - [ ] Basic Reagent home page
@@ -26,6 +26,7 @@ API to connect the two.
       - [ ] TailWind (yuck, but I'll put it here)
       - [ ] Garden CSS
       - [ ] Other CSS-in-CLJ options?
+  - [ ] Muuntaja + Transit
 - [-] Backend
   - [X] Serve HTML+ClojureScript
   - [ ] Authentication
