@@ -31,6 +31,14 @@ API to connect the two.
   - [ ] Authentication
     - [ ] Log in
     - [ ] Log out
+    - [ ] ~buddy-auth/wrap-authentication~
   - [ ] Authorization
+    - [ ] ~buddy-auth/wrap-authorization~
+          Still unsure if I like the authorization wrapper. Having a second
+          set of route data--in a different syntax, no less--to deal with
+          seems like a pain.
   - [ ] Database (XTDB, natch)
     - [ ] Store user profiles
+  - [ ] Server-side rendering
+    - [ ] Supposedly this can be done with hiccup2
+- [ ] Deployment
