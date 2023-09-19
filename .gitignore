@@ -4,3 +4,5 @@
 sandbox/
 data/
 node_modules/
+cljs-runtime
+.shadow-cljs

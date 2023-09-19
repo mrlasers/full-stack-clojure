@@ -4,6 +4,12 @@
             [reitit.ring :as ring]
             [clojure.java.io :as io]))
 
+(def js-resources
+  (ring/create-resource-handler
+   {:root "/public/js"
+    :path "/js"
+    :not-found-handler (res/not-found "js file not found")}))
+
 (defn app []
   (ring/ring-handler
    (ring/router
@@ -12,10 +18,7 @@
                                        io/resource
                                        slurp)})])
    (ring/routes
-    (ring/create-resource-handler
-     {:root "/public/js"
-      :path "/js"
-      :not-found-handler (res/not-found "js file not found")})
+    js-resources
     (ring/create-default-handler
      {:not-found
       (constantly {:status 418

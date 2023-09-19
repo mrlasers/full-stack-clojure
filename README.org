@@ -18,6 +18,14 @@ API to connect the two.
   - [ ] Main pages
     - [ ] Home page that looks kind of nice
     - [ ] Page that displays some kind of table with data from the backend
+  - [ ] Styling
+    - [ ] What tech?
+      - [ ] Vanilla CSS
+      - [ ] SCSS (can get this to live compile in emacs)
+      - [ ] SASS (sass watcher in other terminal?)
+      - [ ] TailWind (yuck, but I'll put it here)
+      - [ ] Garden CSS
+      - [ ] Other CSS-in-CLJ options?
 - [-] Backend
   - [X] Serve HTML+ClojureScript
   - [ ] Authentication
