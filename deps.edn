@@ -1,0 +1,28 @@
+{:paths ["src" :resource-paths]
+ :aliases {:dev {:extra-paths ["dev"]
+                 :extra-deps {thheller/shadow-cljs {:mvn/version "2.24.1"}}}
+           :resource-paths ["resources"]}
+ :deps {org.clojure/clojure {:mvn/version "1.11.1"}
+        ;; jvm server
+        ring/ring {:mvn/version "1.10.0"}
+        ring/ring-jetty-adapter {:mvn/version "1.9.6"}
+        ring/ring-defaults {:mvn/version "0.4.0"}
+
+        hiccup/hiccup {:mvn/version "2.0.0-RC1"}
+
+        buddy/buddy-auth {:mvn/version "3.0.323"}
+        buddy/buddy-hashers {:mvn/version "2.0.167"}
+        buddy/buddy-sign {:mvn/version "3.5.351"}
+
+        metosin/muuntaja {:mvn/version "0.6.8"}
+        metosin/malli {:mvn/version "0.11.0"}
+        metosin/reitit {:mvn/version "0.7.0-alpha5"}
+
+        com.widdindustries/cljc.java-time {:mvn/version "0.1.21"}
+
+        ;; frontend
+        reagent/reagent {:mvn/version "1.2.0"}
+        re-frame/re-frame {:mvn/version "1.3.0"}
+        day8.re-frame/http-fx {:mvn/version "0.2.4"}
+        ;; stops shadow-cljs or clojurescript or something from crying
+        org.slf4j/slf4j-simple {:mvn/version "2.0.7"}}}

@@ -1,0 +1,7 @@
+{:deps {:aliases [:dev]}
+ :builds {:app {:target :browser
+                :output-dir "resources/public/js"
+                :asset-path "/js"
+                :modules {:main {:entries [frontend.core]}}
+                :release {:output-dir "public/js"
+                          :compiler-options {:optimizations :advanced}}}}}
