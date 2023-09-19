@@ -1,0 +1,28 @@
+* Full-Stack Clojure
+
+A full-stack Clojure demonstration, including backend, frontend, and an
+API to connect the two.
+
+** TODO Features [0/2]
+- [-] Frontend
+  - [X] ClojureScript setup and served from backend
+  - [ ] Basic Reagent home page
+  - [ ] Header
+    - [ ] Main navigation menu
+      - [ ] Is there a way to tie this directly into routes? Like mark a
+            frontend route with ~:nav~ key or something?
+      - [ ] Active links that navigate to other pages
+    - [ ] Profile box
+      - [ ] Display login form if user is not logged in
+      - [ ] Display top-line user details if logged in
+  - [ ] Main pages
+    - [ ] Home page that looks kind of nice
+    - [ ] Page that displays some kind of table with data from the backend
+- [-] Backend
+  - [X] Serve HTML+ClojureScript
+  - [ ] Authentication
+    - [ ] Log in
+    - [ ] Log out
+  - [ ] Authorization
+  - [ ] Database (XTDB, natch)
+    - [ ] Store user profiles
