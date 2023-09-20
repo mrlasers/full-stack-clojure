@@ -3,8 +3,18 @@
             [ring.util.response :as res]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
             [reitit.ring :as ring]
-            [hiccup2.core :refer [html]]
+            [hiccup2.core :refer [html raw]]
+            [cognitect.transit :as transit]
+            [common.transit :as t]
             [clojure.java.io :as io]))
+
+(t/transit-out {:hello :world})
+
+(defn transit-out [data]
+  (let [out (java.io.ByteArrayOutputStream. 4096)
+        writer (transit/writer out :json)]
+    (transit/write writer data)
+    (.toString out)))
 
 (def js-resources-handler
   (ring/create-resource-handler
@@ -20,11 +30,29 @@
                            html
                            str)})}))
 
+(defn page-template
+  ([] (page-template nil))
+  ([preloaded-state]
+   (html (raw "<!DOCTYPE html>")
+         [:html
+          [:head
+           [:meta {:charset "utf-8"}]
+           [:title "Full-Stack Clojure"]
+           [:script {:src "/js/main.js" :defer true}]
+           (when preloaded-state
+             [:meta {:id "__preloaded_state__"
+                     :value (transit-out preloaded-state)}]
+             #_(raw "<meta id=\"__preloaded_state__\">"
+                  (transit-out preloaded-state) "</meta>"))]
+          [:body [:div#app]]])))
+
 (defn home-route-handler [request]
   {:status 200
-   :body (some->> "public/index.html"
-                  io/resource
-                  slurp)})
+   :headers {"Content-Type" "text/html"}
+   :body (str (page-template #{:hello :world}))
+   #_(some->> "public/index.html"
+              io/resource
+              slurp)})
 
 (def site-config
   (update site-defaults

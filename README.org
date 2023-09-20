@@ -3,43 +3,58 @@
 A full-stack Clojure demonstration, including backend, frontend, and an
 API to connect the two.
 
-** TODO Features [0/3]
-- [-] Frontend
-  - [X] ClojureScript setup and served from backend
-  - [ ] Basic Reagent home page
-  - [ ] Header
-    - [ ] Main navigation menu
-      - [ ] Is there a way to tie this directly into routes? Like mark a
-            frontend route with ~:nav~ key or something?
-      - [ ] Active links that navigate to other pages
-    - [ ] Profile box
-      - [ ] Display login form if user is not logged in
-      - [ ] Display top-line user details if logged in
-  - [ ] Main pages
-    - [ ] Home page that looks kind of nice
-    - [ ] Page that displays some kind of table with data from the backend
-  - [ ] Styling
-    - [ ] What tech?
-      - [ ] Vanilla CSS
-      - [ ] SCSS (can get this to live compile in emacs)
-      - [ ] SASS (sass watcher in other terminal?)
-      - [ ] TailWind (yuck, but I'll put it here)
-      - [ ] Garden CSS
-      - [ ] Other CSS-in-CLJ options?
-  - [ ] Muuntaja + Transit
-- [-] Backend
-  - [X] Serve HTML+ClojureScript
-  - [ ] Authentication
-    - [ ] Log in
-    - [ ] Log out
-    - [ ] ~buddy-auth/wrap-authentication~
-  - [ ] Authorization
-    - [ ] ~buddy-auth/wrap-authorization~
-          Still unsure if I like the authorization wrapper. Having a second
-          set of route data--in a different syntax, no less--to deal with
-          seems like a pain.
-  - [ ] Database (XTDB, natch)
-    - [ ] Store user profiles
-  - [ ] Server-side rendering
-    - [ ] Supposedly this can be done with hiccup2
-- [ ] Deployment
+** TODO Features1]
+*** Frontend [2/5]
+- [X] ClojureScript setup and served from backend
+- [X] Basic Reagent home page
+- [-] Header
+  - [-] Main navigation menu
+    - [X] Minimal placeholder nav
+    - [ ] Is there a way to tie this directly into routes? Like mark a
+          frontend route with ~:nav~ key or something?
+    - [ ] Active links that navigate to other pages
+  - [ ] Profile box
+    - [ ] Display login form if user is not logged in
+    - [ ] Display top-line user details if logged in
+- [ ] Main pages
+  - [ ] Home page that looks kind of nice
+  - [ ] Page that displays some kind of table with data from the backend
+- [ ] Styling
+  - [ ] What tech?
+    - [ ] Vanilla CSS
+    - [ ] SCSS (can get this to live compile in emacs)
+    - [ ] SASS (sass watcher in other terminal?)
+    - [ ] TailWind (yuck, but I'll put it here)
+    - [ ] Garden CSS
+    - [ ] Other CSS-in-CLJ options?
+*** Backend [1/5]
+- [X] Serve HTML+ClojureScript
+- [ ] Authentication
+  - [ ] Log in
+  - [ ] Log out
+  - [ ] ~buddy-auth/wrap-authentication~
+- [ ] Authorization
+  - [ ] ~buddy-auth/wrap-authorization~
+        Still unsure if I like the authorization wrapper. Having a second
+        set of route data--in a different syntax, no less--to deal with
+        seems like a pain.
+- [ ] Database (XTDB, natch)
+  - [ ] Store user profiles
+- [ ] Server-side rendering
+  - [ ] Supposedly this can be done with hiccup2
+*** Common [0/1]
+- [-] Muuntaja + Transit
+  - [-] Transit with custom reader/writer
+    - [X] Initial implementation with support for cljc.java-time types
+    - [ ] Refactor current implementation, which is in separate files for
+          clj and cljs
+  - [ ] Muuntaja with custom reader/writer
+*** Deployment [1/1]
+- [X] Done
+
+
+
+
+
+
+
