@@ -6,6 +6,7 @@
             [hiccup2.core :refer [html raw]]
             [cognitect.transit :as transit]
             [common.transit :as t]
+            [common.views.home-page :refer [app-wrapper home-page]]
             [clojure.java.io :as io]))
 
 (t/transit-out {:hello :world})
@@ -22,34 +23,36 @@
     :path "/js"
     :not-found-handler (res/not-found "js file not found")}))
 
+(defn page-template
+  ([] (page-template nil nil))
+  ([body] (page-template body nil))
+  ([body preloaded-state]
+   (html (raw "<!DOCTYPE html>")
+     [:html
+      [:head
+       [:meta {:charset "utf-8"}]
+       [:title "Full-Stack Clojure"]
+       [:script {:src "/js/main.js" :defer true}]
+       (when preloaded-state
+         [:meta {:id "__preloaded_state__"
+                 :value (transit-out preloaded-state)}]
+         #_(raw "<meta id=\"__preloaded_state__\">"
+                (transit-out preloaded-state) "</meta>"))]
+      [:body [:div#app #_(app-wrapper body)]]])))
+
 (def default-handler
   (ring/create-default-handler
    {:not-found (constantly
                 {:status 418
-                 :body (-> [:div "I'm a little teapot! Also, 404."]
-                           html
-                           str)})}))
-
-(defn page-template
-  ([] (page-template nil))
-  ([preloaded-state]
-   (html (raw "<!DOCTYPE html>")
-         [:html
-          [:head
-           [:meta {:charset "utf-8"}]
-           [:title "Full-Stack Clojure"]
-           [:script {:src "/js/main.js" :defer true}]
-           (when preloaded-state
-             [:meta {:id "__preloaded_state__"
-                     :value (transit-out preloaded-state)}]
-             #_(raw "<meta id=\"__preloaded_state__\">"
-                  (transit-out preloaded-state) "</meta>"))]
-          [:body [:div#app]]])))
+                 :body (str (page-template))
+                 #_(-> [:div "I'm a little teapot! Also, 404."]
+                       html
+                       str)})}))
 
 (defn home-route-handler [request]
   {:status 200
    :headers {"Content-Type" "text/html"}
-   :body (str (page-template #{:hello :world}))
+   :body (str (page-template (home-page) #{:hello :world}))
    #_(some->> "public/index.html"
               io/resource
               slurp)})

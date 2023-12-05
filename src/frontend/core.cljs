@@ -1,5 +1,9 @@
 (ns frontend.core
   (:require [reagent.dom :as reagent-dom]
+            [reagent.core :as r]
+            [reitit.frontend :as rf]
+            [reitit.frontend.easy :as rfe]
+            ;; [common.views.home-page :refer [home-page]]
             [common.transit :refer [transit-in transit-out]]))
 
 (defn user-box []
@@ -15,17 +19,44 @@
   [:header
    [:div.logo "Full-Stack"]
    [:nav [:ul
-          [:li [:a {:href "/"} "Home"]]
-          [:li [:a {:href "/dashboard"} "Dashboard"]]
+          [:li [:a {:href (rfe/href ::homepage)} "Home"]]
+          [:li [:a {:href (rfe/href ::dashboard)} "Dashboard"]]
           [:li [:a {:href "/about"} "About"]]]]
    [user-box]])
 
+(defn home-page []
+  [:<>
+   [:h1 "Welcome, Home."]
+   [:p "Hello, World!"]])
+
+(defn dashboard []
+  [:<>
+   [:h1 "Dashboard"]
+   [:p "Here's where your dashboard controls will be."]])
+
+(defn about-view []
+  [:<>
+   [:h1 "About This App"]
+   [:p "This is an app by Timothy Pew."]])
+
+;; adding reitit frontend routing
+(defonce match (r/atom nil))
+
+(def routes
+  [["/" {:name ::homepage
+         :view home-page}]
+   ["/dashboard" {:name ::dashboard
+                  :view dashboard}]
+   ["/about" {:name ::about
+              :view about-view}]])
+
 (defn app []
-  [:div
+  [:<>
    [header]
-   [:main
-    [:h1 "Hello, World!!!!!!~"]
-    [:p "Welcome to the world."]]])
+   (when-let [view (:view (:data @match))]
+     #_[view @match]
+     [:main [view @match]])])
+
 
 (defn get-preloaded-state []
   (some-> js/document
@@ -37,7 +68,12 @@
   (println "starting...")
   (println "Preloaded State:" (get-preloaded-state))
   (let [root-element (.getElementById js/document "app")]
-    (reagent-dom/render [app] root-element) ))
+    (rfe/start!
+     (rf/router routes {})
+     (fn [m] (reset! match m))
+     {:use-fragment false})
+    (reagent-dom/render [app] root-element)
+    ))
 
 (defn init []
   (start))

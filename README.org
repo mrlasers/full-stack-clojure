@@ -24,7 +24,7 @@ API to connect the two.
     - [ ] Vanilla CSS
     - [ ] SCSS (can get this to live compile in emacs)
     - [ ] SASS (sass watcher in other terminal?)
-    - [ ] TailWind (yuck, but I'll put it here)
+    - [ ] TailWind (yuck, but I'll put it here anyway)
     - [ ] Garden CSS
     - [ ] Other CSS-in-CLJ options?
 *** Backend [1/5]
